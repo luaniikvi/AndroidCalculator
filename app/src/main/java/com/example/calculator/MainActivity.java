@@ -4,16 +4,12 @@ import static com.example.calculator.ExpressionCalculator.evaluateExpression_toS
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.calculator.databinding.ActivityMainBinding;
@@ -25,9 +21,6 @@ import java.util.function.Consumer;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-
-    Button btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,plusBtn,subBtn,mulBtn,divBtn,clearBtn,delBtn,percentBtn,equalBtn,commaBtn;
-    TextView textView, textView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         setDisplay.accept("0");
 
-        // 2. Các nút chức năng
+
         binding.clearBtn.setOnClickListener(v -> setDisplay.accept("0"));
 
         binding.delBtn.setOnClickListener(v -> {
@@ -94,17 +87,23 @@ public class MainActivity extends AppCompatActivity {
 
         binding.equalBtn.setOnClickListener(v -> {
             String displayText = binding.textView.getText().toString();
+            String txt2 = binding.textView2.getText().toString();
+
+            if (displayText.equals(txt2)) return;
+
             try {
-                String ans = evaluateExpression_toString(displayText,this);
+                String ans = evaluateExpression_toString(displayText,MainActivity.this);
                 setDisplay.accept(ans);
+                if (!ans.equals(displayText))
+                    binding.textView2.setText(displayText);
+                else binding.textView2.setText(txt2);
             } catch (Exception e) {
                 binding.textView2.setText(e.getMessage());
-                return;
             }
-            binding.textView2.setText(displayText);
+
         });
 
-        // 3. Các nút số (0 - 9)
+
         Button[] numButtons = {
                 binding.btn0, binding.btn1, binding.btn2, binding.btn3, binding.btn4,
                 binding.btn5, binding.btn6, binding.btn7, binding.btn8, binding.btn9
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        // 4. Các nút phép tính (giữ riêng từng nút và ép ký tự hiển thị như code cũ)
+
         binding.plusBtn.setOnClickListener(v -> {
             if (isDuplicateOp.getAsBoolean()) {
                 replaceLastCharOfDisplay.accept("+");
