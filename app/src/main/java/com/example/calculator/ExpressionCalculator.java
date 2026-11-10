@@ -1,24 +1,45 @@
 package com.example.calculator;
 
 
+import android.content.Context;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-
+import androidx.appcompat.app.AppCompatActivity;
 public class ExpressionCalculator {
 
-    private static final MathContext MC =
-            new MathContext(20, RoundingMode.HALF_UP);
+    private static MathContext MC;
 
-    public static BigDecimal evaluateExpression(String expression) {
+    public static  String evaluateExpression_toString(String expression, Context cxt) {
+        return evaluateExpression(expression, cxt).toString();
+    }
+
+    public static BigDecimal evaluateExpression(String expression, Context cxt) {
         if (expression == null || expression.isBlank()) {
             throw new IllegalArgumentException(
                     "Biểu thức không được để trống"
             );
         }
-
+        if (cxt == null) {
+            throw new IllegalArgumentException("Context can not null");
+        }
+        MC = new MathContext(
+                cxt.getResources().getInteger(R.integer.precision),
+                RoundingMode.HALF_UP
+        );
         Parser parser = new Parser(expression);
-        return parser.parse();
+        BigDecimal result = parser.parse();
+        result = result.stripTrailingZeros();
+
+        if (result.compareTo(BigDecimal.ZERO) == 0) {
+            return BigDecimal.ZERO;
+        }
+        if (result.scale() < 0) {
+            return result.setScale(0, RoundingMode.UNNECESSARY);
+        }
+
+        return result;
     }
 
     private static class Parser {
@@ -179,7 +200,7 @@ public class ExpressionCalculator {
 
         private IllegalArgumentException error(String message) {
             return new IllegalArgumentException(
-                    message + " (vị trí " + pos + ")"
+                    message
             );
         }
     }
