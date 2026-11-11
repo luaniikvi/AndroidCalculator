@@ -19,4 +19,30 @@
     <string name="error_divide_by_zero">Can not divide by 0</string>
     <string name="error_invalid_format">Invalid expression</string>
     <string name="error_overflow">Limit overflow</string>
+
+    <!-- Accessibility Content Descriptions (TalkBack) -->
+    <string name="desc_clear">Clear all</string>
+    <string name="desc_delete">Delete</string>
+
+    <string name="desc_percent">Percent</string>
+    <string name="desc_divide">Divide</string>
+    <string name="desc_multiply">Multiply</string>
+    <string name="desc_minus">Minus</string>
+    <string name="desc_plus">Plus</string>
+    <string name="desc_equal">Equals</string>
+    <string name="desc_dot">Decimal point</string>
+
+    <string name="desc_num_0">Zero</string>
+    <string name="desc_num_1">One</string>
+    <string name="desc_num_2">Two</string>
+    <string name="desc_num_3">Three</string>
+    <string name="desc_num_4">Four</string>
+    <string name="desc_num_5">Five</string>
+    <string name="desc_num_6">Six</string>
+    <string name="desc_num_7">Seven</string>
+    <string name="desc_num_8">Eight</string>
+    <string name="desc_num_9">Nine</string>
+
+    <string name="desc_expression_screen">Expression</string>
+    <string name="desc_result_screen">Calculation result</string>
 </resources>

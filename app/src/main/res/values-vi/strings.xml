@@ -19,4 +19,31 @@
     <string name="error_divide_by_zero">Không thể chia cho 0</string>
     <string name="error_invalid_format">Biểu thức không hợp lệ</string>
     <string name="error_overflow">Vượt quá giới hạn tính toán</string>
+
+
+    <!-- Accessibility Content Descriptions (TalkBack) -->
+    <string name="desc_clear">Xóa toàn bộ</string>
+    <string name="desc_delete">Xóa một ký tự</string>
+
+    <string name="desc_percent">Phần trăm</string>
+    <string name="desc_divide">Chia</string>
+    <string name="desc_multiply">Nhân</string>
+    <string name="desc_minus">Trừ</string>
+    <string name="desc_plus">Cộng</string>
+    <string name="desc_equal">Bằng</string>
+    <string name="desc_dot">Dấu chấm thập phân</string>
+
+    <string name="desc_num_0">Số không</string>
+    <string name="desc_num_1">Số một</string>
+    <string name="desc_num_2">Số hai</string>
+    <string name="desc_num_3">Số ba</string>
+    <string name="desc_num_4">Số bốn</string>
+    <string name="desc_num_5">Số năm</string>
+    <string name="desc_num_6">Số sáu</string>
+    <string name="desc_num_7">Số bảy</string>
+    <string name="desc_num_8">Số tám</string>
+    <string name="desc_num_9">Số chín</string>
+
+    <string name="desc_expression_screen">Biểu thức</string>
+    <string name="desc_result_screen">Kết quả tính toán</string>
 </resources>
