@@ -9,7 +9,6 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        // Gán Context cấp độ ứng dụng vào biến tĩnh
         appContext = getApplicationContext();
     }
 

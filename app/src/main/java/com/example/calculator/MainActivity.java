@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             if (displayText.equals(txt2)) return;
 
             try {
-                String ans = evaluateExpression_toString(displayText,MainActivity.this);
+                String ans = evaluateExpression_toString(displayText);
                 setDisplay.accept(ans);
                 if (!ans.equals(displayText))
                     binding.textView2.setText(displayText);

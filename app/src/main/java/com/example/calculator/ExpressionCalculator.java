@@ -1,33 +1,30 @@
 package com.example.calculator;
 
 
-import android.content.Context;
+import android.content.res.Resources;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-import androidx.appcompat.app.AppCompatActivity;
 public class ExpressionCalculator {
+    private static final Resources appResource = MyApp.getAppContext().getResources();
 
-    private static MathContext MC;
+    private static final MathContext MC = new MathContext(
+            appResource.getInteger(R.integer.precision),
+            RoundingMode.HALF_UP
+    );
 
-    public static  String evaluateExpression_toString(String expression, Context cxt) {
-        return evaluateExpression(expression, cxt).toString();
+    public static  String evaluateExpression_toString(String expression) {
+        return evaluateExpression(expression).toString();
     }
 
-    public static BigDecimal evaluateExpression(String expression, Context cxt) {
+    public static BigDecimal evaluateExpression(String expression) {
         if (expression == null || expression.isBlank()) {
             throw new IllegalArgumentException(
                     "Biểu thức không được để trống"
             );
         }
-        if (cxt == null) {
-            throw new IllegalArgumentException("Context can not null");
-        }
-        MC = new MathContext(
-                cxt.getResources().getInteger(R.integer.precision),
-                RoundingMode.HALF_UP
-        );
+
         Parser parser = new Parser(expression);
         BigDecimal result = parser.parse();
         result = result.stripTrailingZeros();
@@ -59,14 +56,13 @@ public class ExpressionCalculator {
 
             if (pos < input.length()) {
                 throw error(
-                        "Ký tự không hợp lệ: '" + input.charAt(pos) + "'"
+                        appResource.getString(R.string.error_invalid_format)+": '" + input.charAt(pos) + "'"
                 );
             }
 
             return result;
         }
 
-        // expression = term (('+' | '-') term)*
         private BigDecimal parseExpression() {
             BigDecimal value = parseTerm();
 
@@ -87,21 +83,20 @@ public class ExpressionCalculator {
             return value;
         }
 
-        // term = unary (('×' | '÷') unary)*
         private BigDecimal parseTerm() {
             BigDecimal value = parseUnary();
 
             while (true) {
                 skipSpaces();
 
-                if (match('×')) {
+                if (match(Symbols.MULTIPLY.charAt(0))) {
                     value = value.multiply(parseUnary(), MC);
 
-                } else if (match('÷')) {
+                } else if (match(Symbols.DIVIDE.charAt(0))) {
                     BigDecimal divisor = parseUnary();
 
                     if (divisor.compareTo(BigDecimal.ZERO) == 0) {
-                        throw error("Không thể chia cho 0");
+                        throw error(appResource.getString(R.string.error_divide_by_zero));
                     }
 
                     value = value.divide(divisor, MC);
@@ -118,25 +113,25 @@ public class ExpressionCalculator {
         private BigDecimal parseUnary() {
             skipSpaces();
 
-            if (match('+')) {
+            if (match(Symbols.PLUS.charAt(0))) {
                 return parseUnary();
             }
 
-            if (match('-')) {
+            if (match(Symbols.MINUS.charAt(0))) {
                 return parseUnary().negate();
             }
 
             return parsePostfix();
         }
 
-        // postfix = number ('%')*
+
         private BigDecimal parsePostfix() {
             BigDecimal value = parseNumber();
 
             while (true) {
                 skipSpaces();
 
-                if (match('%')) {
+                if (match(Symbols.PERCENT.charAt(0))) {
                     value = value.divide(
                             BigDecimal.valueOf(100),
                             MC
@@ -149,7 +144,7 @@ public class ExpressionCalculator {
             return value;
         }
 
-        // number = digits ['.' digits] | '.' digits
+
         private BigDecimal parseNumber() {
             skipSpaces();
 
@@ -162,7 +157,7 @@ public class ExpressionCalculator {
                 hasDigit = true;
             }
 
-            if (match('.')) {
+            if (match(Symbols.DOT.charAt(0))) {
                 while (pos < input.length()
                         && Character.isDigit(input.charAt(pos))) {
                     pos++;
@@ -171,13 +166,13 @@ public class ExpressionCalculator {
             }
 
             if (!hasDigit) {
-                throw error("Thiếu số tại vị trí này");
+                throw error(appResource.getString(R.string.error_invalid_format));
             }
 
             try {
                 return new BigDecimal(input.substring(start, pos));
             } catch (NumberFormatException e) {
-                throw error("Số không hợp lệ");
+                throw error(appResource.getString(R.string.error_invalid_format));
             }
         }
 
