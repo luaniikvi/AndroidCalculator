@@ -1,4 +1,22 @@
 <resources>
     <string name="app_name">Calculator</string>
     <string name="title_activity_main">MainActivity</string>
+
+
+
+    <string name="symbol_plus">+</string>
+    <string name="symbol_minus">-</string>
+    <string name="symbol_multiply">×</string>
+    <string name="symbol_divide">÷</string>
+    <string name="symbol_percent">%</string>
+    <string name="symbol_dot">.</string>
+    <string name="symbol_equal">=</string>
+
+    <string name="btn_clear">C</string>
+    <string name="btn_all_clear">AC</string>
+    <string name="btn_delete">⌫</string>
+
+    <string name="error_divide_by_zero">Can not divide by 0</string>
+    <string name="error_invalid_format">Invalid expression</string>
+    <string name="error_overflow">Limit overflow</string>
 </resources>

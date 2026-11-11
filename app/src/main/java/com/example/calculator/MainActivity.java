@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             String txt = binding.textView.getText().toString();
             if (!txt.isEmpty()) {
                 char lastChar = txt.charAt(txt.length() - 1);
-                return "+-x/%÷×".indexOf(lastChar) != -1;
+                return Symbols.getAllOp().indexOf(lastChar) != -1;
             }
             return false;
         };
@@ -123,43 +123,54 @@ public class MainActivity extends AppCompatActivity {
 
         binding.plusBtn.setOnClickListener(v -> {
             if (isDuplicateOp.getAsBoolean()) {
-                replaceLastCharOfDisplay.accept("+");
+                replaceLastCharOfDisplay.accept(Symbols.PLUS);
             } else {
-                appendDisplay.accept("+");
+                appendDisplay.accept(Symbols.PLUS);
             }
         });
 
-        binding.subBtn.setOnClickListener(v -> {
+        binding.minusBtn.setOnClickListener(v -> {
             if (binding.textView.getText().toString().equals("0")) {
-                setDisplay.accept("-");
+                setDisplay.accept(Symbols.MINUS);
             } else if (isDuplicateOp.getAsBoolean()) {
-                replaceLastCharOfDisplay.accept("-");
+                replaceLastCharOfDisplay.accept(Symbols.MINUS);
             } else {
-                appendDisplay.accept("-");
+                appendDisplay.accept(Symbols.MINUS);
             }
         });
 
         binding.mulBtn.setOnClickListener(v -> {
             if (isDuplicateOp.getAsBoolean()) {
-                replaceLastCharOfDisplay.accept("×");
+                replaceLastCharOfDisplay.accept(Symbols.MULTIPLY);
             } else {
-                appendDisplay.accept("×");
+                appendDisplay.accept(Symbols.MULTIPLY);
             }
         });
 
         binding.divBtn.setOnClickListener(v -> {
             if (isDuplicateOp.getAsBoolean()) {
-                replaceLastCharOfDisplay.accept("÷");
+                replaceLastCharOfDisplay.accept(Symbols.DIVIDE);
             } else {
-                appendDisplay.accept("÷");
+                appendDisplay.accept(Symbols.DIVIDE);
             }
         });
 
-        binding.percentBtn.setOnClickListener(v -> appendDisplay.accept("%"));
+        binding.percentBtn.setOnClickListener(v -> appendDisplay.accept(Symbols.PERCENT));
 
         binding.commaBtn.setOnClickListener(v -> {
-            if (!binding.textView.getText().toString().contains(".")) {
-                appendDisplay.accept(".");
+            String currentText = binding.textView.getText().toString();
+
+            String regex = "[" + java.util.regex.Pattern.quote(Symbols.getAllOp()) + "]";
+            String[] parts = currentText.split(regex);
+
+            String currentNumber = parts.length > 0 ? parts[parts.length - 1] : "";
+
+            if (!currentNumber.contains(Symbols.DOT)) {
+                if (currentText.isEmpty() || isDuplicateOp.getAsBoolean()) {
+                    appendDisplay.accept("0" + Symbols.DOT);
+                } else {
+                    appendDisplay.accept(Symbols.DOT);
+                }
             }
         });
     }

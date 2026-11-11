@@ -1,4 +1,22 @@
 <resources>
     <string name="app_name">Máy tính</string>
     <string name="title_activity_main">MainActivity</string>
+
+
+
+    <string name="symbol_plus">+</string>
+    <string name="symbol_minus">-</string>
+    <string name="symbol_multiply">×</string>
+    <string name="symbol_divide">÷</string>
+    <string name="symbol_percent">%</string>
+    <string name="symbol_dot">.</string>
+    <string name="symbol_equal">=</string>
+
+    <string name="btn_clear">C</string>
+    <string name="btn_all_clear">AC</string>
+    <string name="btn_delete">⌫</string>
+
+    <string name="error_divide_by_zero">Không thể chia cho 0</string>
+    <string name="error_invalid_format">Biểu thức không hợp lệ</string>
+    <string name="error_overflow">Vượt quá giới hạn tính toán</string>
 </resources>
