@@ -4,9 +4,11 @@ import static com.example.calculator.ExpressionCalculator.evaluateExpression_toS
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -37,6 +39,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bindKeys();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("textview", binding.textView.getText().toString());
+        outState.putString("textview2", binding.textView2.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        binding.textView.setText(savedInstanceState.getString("textview"));
+        binding.textView2.setText(savedInstanceState.getString("textview2"));
     }
 
     @SuppressLint("SetTextI18n")
