@@ -69,10 +69,10 @@ public class ExpressionCalculator {
             while (true) {
                 skipSpaces();
 
-                if (match('+')) {
+                if (match(Symbols.PLUS.charAt(0))) {
                     value = value.add(parseTerm(), MC);
 
-                } else if (match('-')) {
+                } else if (match(Symbols.MINUS.charAt(0))) {
                     value = value.subtract(parseTerm(), MC);
 
                 } else {
@@ -109,7 +109,6 @@ public class ExpressionCalculator {
             return value;
         }
 
-        // unary = ('+' | '-') unary | postfix
         private BigDecimal parseUnary() {
             skipSpaces();
 

@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             String txt = binding.textView.getText().toString();
             if (!txt.isEmpty()) {
                 char lastChar = txt.charAt(txt.length() - 1);
-                return Symbols.getAllOp().indexOf(lastChar) != -1;
+                return Symbols.getAllOpIgnorePercent().indexOf(lastChar) != -1;
             }
             return false;
         };

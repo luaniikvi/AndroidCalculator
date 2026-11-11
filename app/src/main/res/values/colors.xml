@@ -7,4 +7,27 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="textview_color">#FF000000</color>
+
+
+    <color name="calc_background">#FFF8FD</color>
+
+    <!-- 2. NHÓM NÚT SỐ (0-9, dấu chấm .) -->
+    <color name="btn_number_bg">#EAE7EC</color>
+    <color name="btn_number_text">#1D1B20</color>
+
+
+    <color name="btn_action_bg">#EDE6FD</color>
+    <color name="btn_action_text">#28065F</color>
+
+
+    <!-- 3. NHÓM PHÉP TOÁN BÊN PHẢI (÷, ×, -, +) VÀ NÚT CHỨC NĂNG (C, Xóa) -->
+    <color name="btn_operator_bg">#EDE6FD</color>
+    <color name="btn_operator_text">#28065F</color>
+
+    <!-- 4. NÚT DẤU BẰNG (=) - Nổi bật nhất -->
+    <color name="btn_equal_bg">#5F529F</color>
+    <color name="btn_equal_text">#FFFFFF</color>
 </resources>

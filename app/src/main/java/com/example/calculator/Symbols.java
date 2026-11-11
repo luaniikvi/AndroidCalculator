@@ -26,4 +26,11 @@ public class Symbols {
                 MINUS +
                 PERCENT;
     }
+
+    static String getAllOpIgnorePercent(){
+        return MULTIPLY +
+                DIVIDE +
+                PLUS +
+                MINUS;
+    }
 }

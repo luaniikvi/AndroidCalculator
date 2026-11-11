@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <color name="textview_color">#FFFFFFFF</color>
+
+
+    <color name="calc_background">#000000</color>
+
+    <!-- 2. NHÓM NÚT SỐ (0-9, dấu chấm .) - Xám đậm iOS -->
+    <color name="btn_number_bg">#333333</color>
+    <color name="btn_number_text">#FFFFFF</color>
+
+    <!-- 3. NHÓM CHỨC NĂNG (C, DEL) - Xám sáng iOS -->
+    <color name="btn_action_bg">#A5A5A5</color>
+    <color name="btn_action_text">#000000</color>
+
+
+    <!-- 4. NHÓM PHÉP TOÁN (÷, ×, -, +) VÀ DẤU BẰNG (=) - Cam đặc trưng iOS -->
+    <color name="btn_operator_bg">#FF9F0A</color>
+    <color name="btn_operator_text">#FFFFFF</color>
+
+    <color name="btn_equal_bg">#FF9F0A</color>
+    <color name="btn_equal_text">#FFFFFF</color>
+</resources>
